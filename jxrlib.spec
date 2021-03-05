@@ -121,10 +121,6 @@ cd ..
 %{_libdir}/libjpegxr.so.%{major}{,.*}
 %{_libdir}/libjxrglue.so.%{major}{,.*}
 
-%files -n %{lib32name}
-%{_prefix}/lib/libjpegxr.so.%{major}{,.*}
-%{_prefix}/lib/libjxrglue.so.%{major}{,.*}
-
 %files -n %{devname}
 %{_bindir}/JxrEncApp
 %{_bindir}/JxrDecApp
@@ -132,6 +128,12 @@ cd ..
 %{_libdir}/libjpegxr.so
 %{_libdir}/libjxrglue.so
 
+%if %{with compat32}
+%files -n %{lib32name}
+%{_prefix}/lib/libjpegxr.so.%{major}{,.*}
+%{_prefix}/lib/libjxrglue.so.%{major}{,.*}
+
 %files -n %{dev32name}
 %{_prefix}/lib/libjpegxr.so
 %{_prefix}/lib/libjxrglue.so
+%endif
