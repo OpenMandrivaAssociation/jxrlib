@@ -1,6 +1,6 @@
-diff -rupN jxrlib/image/sys/common.h jxrlib-new/image/sys/common.h
---- jxrlib/image/sys/common.h	2013-03-21 17:30:54.000000000 +0100
-+++ jxrlib-new/image/sys/common.h	2015-09-03 10:31:06.528657911 +0200
+diff -up jxrlib/image/sys/common.h.1~ jxrlib/image/sys/common.h
+--- jxrlib/image/sys/common.h.1~	2021-03-05 05:26:15.765718571 +0100
++++ jxrlib/image/sys/common.h	2021-03-05 05:27:35.678388654 +0100
 @@ -124,8 +124,8 @@ Void Adapt (CAdaptiveHuffman *pAdHuff, B
  Void AdaptFixed (CAdaptiveHuffman *pAdHuff);
  Void AdaptDiscriminant (CAdaptiveHuffman *pAdHuff);
@@ -8,14 +8,14 @@ diff -rupN jxrlib/image/sys/common.h jxrlib-new/image/sys/common.h
 -#ifndef _PREFAST_
 -#pragma warning(disable:4068)
 -#endif
-+// #ifndef _PREFAST_
-+// #pragma warning(disable:4068)
-+// #endif
++//#ifndef _PREFAST_
++//#pragma warning(disable:4068)
++//#endif
  
  #endif  // WMI_COMMON_H
-diff -rupN jxrlib/image/sys/strcodec.c jxrlib-new/image/sys/strcodec.c
---- jxrlib/image/sys/strcodec.c	2013-03-20 19:16:21.000000000 +0100
-+++ jxrlib-new/image/sys/strcodec.c	2015-09-03 10:30:31.018971760 +0200
+diff -up jxrlib/image/sys/strcodec.c.1~ jxrlib/image/sys/strcodec.c
+--- jxrlib/image/sys/strcodec.c.1~	2021-03-05 05:26:15.766718580 +0100
++++ jxrlib/image/sys/strcodec.c	2021-03-05 05:29:39.532376485 +0100
 @@ -668,9 +668,7 @@ ERR detach_SB(SimpleBitIO* pSB)
  // WinCE ARM and Desktop x86
  #else
@@ -27,23 +27,20 @@ diff -rupN jxrlib/image/sys/strcodec.c jxrlib-new/image/sys/strcodec.c
  U32 _byteswap_ulong(U32 bits)
  {
      U32 r = (bits & 0xffu) << 24;
-diff -rupN jxrlib/image/sys/strcodec.h jxrlib-new/image/sys/strcodec.h
---- jxrlib/image/sys/strcodec.h	2013-03-21 19:22:34.000000000 +0100
-+++ jxrlib-new/image/sys/strcodec.h	2015-09-03 10:30:31.019971779 +0200
+diff -up jxrlib/image/sys/strcodec.h.1~ jxrlib/image/sys/strcodec.h
+--- jxrlib/image/sys/strcodec.h.1~	2021-03-05 05:26:15.766718580 +0100
++++ jxrlib/image/sys/strcodec.h	2021-03-05 05:29:24.680260899 +0100
 @@ -64,7 +64,7 @@
  
  #ifndef UNREFERENCED_PARAMETER
  #define UNREFERENCED_PARAMETER(P) { (P) = (P); }
 -#endif UNREFERENCED_PARAMETER
-+#endif // UNREFERENCED_PARAMETER
++#endif //UNREFERENCED_PARAMETER
  
  #ifdef UNDER_CE
  #define PLATFORM_WCE
-@@ -673,6 +673,16 @@ void flushToByte(BitIOInfo* pIO);
-     pIO->cBitsUsed &= 16 - 1;\
-     pIO->uiAccumulator = LOAD16(pIO->pbCurrent) << pIO->cBitsUsed;\
-     return 0;
--//    pIO->uiAccumulator = LOAD16(pIO->pbCurrent) & ((U32)(-1) >> pIO->cBitsUsed);\
+@@ -676,3 +676,14 @@ void flushToByte(BitIOInfo* pIO);
+ //    pIO->uiAccumulator = LOAD16(pIO->pbCurrent) & ((U32)(-1) >> pIO->cBitsUsed);\
  
  void OutputPerfTimerReport(CWMImageStrCodec *pState);
 +
@@ -57,10 +54,9 @@ diff -rupN jxrlib/image/sys/strcodec.h jxrlib-new/image/sys/strcodec.h
 +U32 _byteswap_ulong(U32 bits);
 +#endif // _BIG__ENDIAN_
 +#endif
-\ No newline at end of file
-diff -rupN jxrlib/jxrencoderdecoder/JxrDecApp.c jxrlib-new/jxrencoderdecoder/JxrDecApp.c
---- jxrlib/jxrencoderdecoder/JxrDecApp.c	2013-05-08 18:45:08.000000000 +0200
-+++ jxrlib-new/jxrencoderdecoder/JxrDecApp.c	2015-09-03 10:30:31.019971779 +0200
+diff -up jxrlib/jxrencoderdecoder/JxrDecApp.c.1~ jxrlib/jxrencoderdecoder/JxrDecApp.c
+--- jxrlib/jxrencoderdecoder/JxrDecApp.c.1~	2021-03-05 05:26:15.766718580 +0100
++++ jxrlib/jxrencoderdecoder/JxrDecApp.c	2021-03-05 05:30:08.913603062 +0100
 @@ -423,7 +423,7 @@ ERR WmpDecAppCreateEncoderFromExt(
      Call(GetTestEncodeIID(szExt, &pIID));
  
@@ -70,9 +66,9 @@ diff -rupN jxrlib/jxrencoderdecoder/JxrDecApp.c jxrlib-new/jxrencoderdecoder/Jxr
  
  Cleanup:
      return err;
-diff -rupN jxrlib/jxrencoderdecoder/JxrEncApp.c jxrlib-new/jxrencoderdecoder/JxrEncApp.c
---- jxrlib/jxrencoderdecoder/JxrEncApp.c	2013-05-28 20:58:22.000000000 +0200
-+++ jxrlib-new/jxrencoderdecoder/JxrEncApp.c	2015-09-03 10:30:31.020971798 +0200
+diff -up jxrlib/jxrencoderdecoder/JxrEncApp.c.1~ jxrlib/jxrencoderdecoder/JxrEncApp.c
+--- jxrlib/jxrencoderdecoder/JxrEncApp.c.1~	2021-03-05 05:26:15.767718588 +0100
++++ jxrlib/jxrencoderdecoder/JxrEncApp.c	2021-03-05 05:30:28.869755443 +0100
 @@ -578,7 +578,7 @@ main(int argc, char* argv[])
  
      //================================
@@ -82,32 +78,33 @@ diff -rupN jxrlib/jxrencoderdecoder/JxrEncApp.c jxrlib-new/jxrencoderdecoder/Jxr
  
      //----------------------------------------------------------------
      Call(PKCreateTestFactory(&pTestFactory, WMP_SDK_VERSION));
-diff -rupN jxrlib/jxrgluelib/JXRGlueJxr.c jxrlib-new/jxrgluelib/JXRGlueJxr.c
---- jxrlib/jxrgluelib/JXRGlueJxr.c	2013-03-20 20:01:13.000000000 +0100
-+++ jxrlib-new/jxrgluelib/JXRGlueJxr.c	2015-09-03 10:30:31.021971818 +0200
-@@ -28,6 +28,7 @@
+diff -up jxrlib/jxrgluelib/JXRGlueJxr.c.1~ jxrlib/jxrgluelib/JXRGlueJxr.c
+--- jxrlib/jxrgluelib/JXRGlueJxr.c.1~	2021-03-05 05:26:15.767718588 +0100
++++ jxrlib/jxrgluelib/JXRGlueJxr.c	2021-03-05 05:30:50.957922741 +0100
+@@ -28,7 +28,7 @@
  //*@@@---@@@@******************************************************************
  #include <limits.h>
  #include <JXRGlue.h>
+-
 +#include <wchar.h>
  
- 
  static const char szHDPhotoFormat[] = "<dc:format>image/vnd.ms-photo</dc:format>";
-diff -rupN jxrlib/jxrgluelib/JXRMeta.h jxrlib-new/jxrgluelib/JXRMeta.h
---- jxrlib/jxrgluelib/JXRMeta.h	2013-03-20 19:06:24.000000000 +0100
-+++ jxrlib-new/jxrgluelib/JXRMeta.h	2015-09-03 10:30:31.021971818 +0200
+ const U32 IFDEntryTypeSizes[] = { 0, 1, 1, 2, 4, 8, 1, 1, 2, 4, 8, 4, 8 };
+diff -up jxrlib/jxrgluelib/JXRMeta.h.1~ jxrlib/jxrgluelib/JXRMeta.h
+--- jxrlib/jxrgluelib/JXRMeta.h.1~	2021-03-05 05:26:15.768718597 +0100
++++ jxrlib/jxrgluelib/JXRMeta.h	2021-03-05 05:31:05.137029408 +0100
 @@ -34,7 +34,7 @@
  
  #ifndef UNREFERENCED_PARAMETER
  #define UNREFERENCED_PARAMETER(P) { (P) = (P); }
 -#endif UNREFERENCED_PARAMETER
-+#endif // UNREFERENCED_PARAMETER
++#endif //UNREFERENCED_PARAMETER
  
  //================================================================
  // Container
-diff -rupN jxrlib/jxrtestlib/JXRTest.c jxrlib-new/jxrtestlib/JXRTest.c
---- jxrlib/jxrtestlib/JXRTest.c	2013-03-19 20:06:18.000000000 +0100
-+++ jxrlib-new/jxrtestlib/JXRTest.c	2015-09-03 10:30:31.022971837 +0200
+diff -up jxrlib/jxrtestlib/JXRTest.c.1~ jxrlib/jxrtestlib/JXRTest.c
+--- jxrlib/jxrtestlib/JXRTest.c.1~	2021-03-05 05:26:15.768718597 +0100
++++ jxrlib/jxrtestlib/JXRTest.c	2021-03-05 05:32:50.540806067 +0100
 @@ -198,7 +198,7 @@ ERR PKTestFactory_CreateDecoderFromFile(
      ERR err = WMP_errSuccess;
  
@@ -153,33 +150,33 @@ diff -rupN jxrlib/jxrtestlib/JXRTest.c jxrlib-new/jxrtestlib/JXRTest.c
  
      pID = *ppID;
      pID->Initialize = PKTestDecode_Initialize;
-diff -rupN jxrlib/jxrtestlib/JXRTestHdr.c jxrlib-new/jxrtestlib/JXRTestHdr.c
---- jxrlib/jxrtestlib/JXRTestHdr.c	2013-03-20 17:40:08.000000000 +0100
-+++ jxrlib-new/jxrtestlib/JXRTestHdr.c	2015-09-03 10:30:31.022971837 +0200
+diff -up jxrlib/jxrtestlib/JXRTestHdr.c.1~ jxrlib/jxrtestlib/JXRTestHdr.c
+--- jxrlib/jxrtestlib/JXRTestHdr.c.1~	2021-03-05 05:26:15.768718597 +0100
++++ jxrlib/jxrtestlib/JXRTestHdr.c	2021-03-05 05:33:02.369891586 +0100
 @@ -27,7 +27,7 @@
  //*@@@---@@@@******************************************************************
  #ifndef ANSI
  #define _CRT_SECURE_NO_WARNINGS
 -#endif ANSI
-+#endif // ANSI
++#endif //ANSI
  
  #include <stdlib.h>
  #include <string.h>
-diff -rupN jxrlib/jxrtestlib/JXRTestPnm.c jxrlib-new/jxrtestlib/JXRTestPnm.c
---- jxrlib/jxrtestlib/JXRTestPnm.c	2013-03-19 22:43:44.000000000 +0100
-+++ jxrlib-new/jxrtestlib/JXRTestPnm.c	2015-09-03 10:30:31.023971856 +0200
+diff -up jxrlib/jxrtestlib/JXRTestPnm.c.1~ jxrlib/jxrtestlib/JXRTestPnm.c
+--- jxrlib/jxrtestlib/JXRTestPnm.c.1~	2021-03-05 05:26:15.769718605 +0100
++++ jxrlib/jxrtestlib/JXRTestPnm.c	2021-03-05 05:33:15.873988842 +0100
 @@ -27,7 +27,7 @@
  //*@@@---@@@@******************************************************************
  #ifndef ANSI
  #define _CRT_SECURE_NO_WARNINGS
 -#endif ANSI
-+#endif // ANSI
++#endif //ANSI
  
  #include <stdlib.h>
  
-diff -rupN jxrlib/jxrtestlib/JXRTestTif.c jxrlib-new/jxrtestlib/JXRTestTif.c
---- jxrlib/jxrtestlib/JXRTestTif.c	2013-03-19 20:17:12.000000000 +0100
-+++ jxrlib-new/jxrtestlib/JXRTestTif.c	2015-09-03 10:30:31.023971856 +0200
+diff -up jxrlib/jxrtestlib/JXRTestTif.c.1~ jxrlib/jxrtestlib/JXRTestTif.c
+--- jxrlib/jxrtestlib/JXRTestTif.c.1~	2021-03-05 05:26:15.769718605 +0100
++++ jxrlib/jxrtestlib/JXRTestTif.c	2021-03-05 05:33:36.363135670 +0100
 @@ -909,8 +909,8 @@ ERR PKImageDecode_Release_TIF(PKTestDeco
  
      PKTestDecode *pID = *ppID;
