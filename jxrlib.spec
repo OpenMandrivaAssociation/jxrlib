@@ -12,7 +12,7 @@
 
 Name:           jxrlib
 Version:        1.1
-Release:        3
+Release:        4
 Summary:        Open source implementation of jpegxr
 Group:          System/Libraries
 
