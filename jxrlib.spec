@@ -5,14 +5,15 @@
 %endif
 
 %define major   0
-%define libname %mklibname jxr %{major}
+%define oldlibname %mklibname jxr 0
+%define libname %mklibname jxr
 %define devname %mklibname jxr -d
 %define lib32name libjxr%{major}
 %define dev32name libjxr-devel
 
 Name:           jxrlib
 Version:        1.4.1
-Release:        1
+Release:        2
 Summary:        Open source implementation of jpegxr
 Group:          System/Libraries
 
@@ -45,6 +46,7 @@ This is an open source implementation of the jpegxr image format standard.
 Summary:        Open source implementation of jpegxr
 Group:          System/Libraries
 Requires:       %{libname} = %{version}-%{release}
+%rename %{oldlibname}
 
 %description -n %{libname}
 This package contains libraries and header files for
