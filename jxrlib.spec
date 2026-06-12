@@ -11,8 +11,8 @@
 %define dev32name libjxr-devel
 
 Name:           jxrlib
-Version:        1.1
-Release:        4
+Version:        1.4.1
+Release:        1
 Summary:        Open source implementation of jpegxr
 Group:          System/Libraries
 
@@ -20,7 +20,9 @@ Group:          System/Libraries
 # https://jxrlib.codeplex.com/workitem/13
 License:        BSD
 URL:            https://jxrlib.codeplex.com/
-Source0:        http://jxrlib.codeplex.com/downloads/get/685249#/jxrlib_%(echo %{version} | tr . _).tar.gz
+#Source0:        http://jxrlib.codeplex.com/downloads/get/685249#/jxrlib_%(echo %{version} | tr . _).tar.gz
+# Maintained fork
+Source0:	https://github.com/mircomir/jxrlib/archive/refs/tags/%{version}.tar.gz
 # Use CMake to build to facilitate creation of shared libraries
 # See https://jxrlib.codeplex.com/workitem/13
 Source1:        CMakeLists.txt
@@ -30,7 +32,7 @@ Source2:        JPEGXR_DPK_Spec_1.0.pdf
 
 # Fix various warnings, upstreamable
 # See https://jxrlib.codeplex.com/workitem/13
-Patch0:         jxrlib_warnings.patch
+#Patch0:         jxrlib_warnings.patch
 
 BuildRequires:  cmake ninja
 
@@ -86,7 +88,7 @@ developing applications that use %{name}.
 #----------------------------------------------------------------------
 
 %prep
-%autosetup -p1 -n %{name}
+%autosetup -p1
 # Sanitize charset and line endings
 for file in `find . -type f -name '*.c' -or -name '*.h' -or -name '*.txt'`; do
   iconv --from=ISO-8859-15 --to=UTF-8 $file > $file.new && \
